@@ -1,0 +1,13 @@
+### Necessary loading and virtual environment activation
+#module purge
+#module load gcc
+#module load python3/3.7.3
+#source ../../env/bin/activate
+#which python3
+#echo $PYTHON_PATH
+
+python run_reconstruction_holo_opt.py -d VIRUS256 -lt squared -it 20 -rp 3 -arf '(binary,1)' -an "(None,)"  -ao "('Adam',1e-01)" -ap "(None,)" -comp 0 -ovs 2
+
+python run_reconstruction_holo_opt.py -d VIRUS256 -lt squared -it 20 -rp 3 -arf '('0.1blockbinary',0,0.25)' -an "('poisson',1e1)"  -ao "('Adam',1e-01)" -ap "('deepdecoder',2,128)" -comp 0 -ovs 3
+
+python run_reconstruction_HIO.py -d COIL  -it 20 -rp 2 -arf "('binary',1)" -an "('poisson',1e0)"  -ovs 3
